@@ -11,7 +11,7 @@ development environment on that.
 
 To build the initial docker image run the following command.
 
-    docker built -t go .
+    docker build -t go .
 
 # Installation
 

@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 WORKDIR /usr/local
 RUN set -ex; \
   apt-get update; \
-  apt-get install -y curl vim git; \
+  apt-get install -y curl vim git make; \
   apt-get clean
 RUN set -ex; \
   curl -LO https://golang.org/dl/go1.17.linux-amd64.tar.gz; \

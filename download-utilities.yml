@@ -11,4 +11,4 @@ utility:
     download: https://go.dev/dl/go${version}.${os}-${arch}.tar.gz
     extract: tar -xzC ${dest}/ --no-same-owner
     update: |
-      git ls-remote -t https://github.com/golang/go.git | grep -F refs/tags/go | sed 's/.*refs\/tags\/go//' | sort -Vr | head -n1
+      git ls-remote -t https://github.com/golang/go.git 'go*' | sed 's/.*refs\/tags\/go//' | sort -Vr | head -n1

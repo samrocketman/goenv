@@ -20,7 +20,7 @@ Add to `.bashrc` file the following function.
 ```bash
 # go environment provided by my goenv project
 function goenv() {
-    docker run -it -v "$PWD":"$PWD" -w "$PWD" go
+    docker run -it --rm -v "$PWD":"$PWD" -w "$PWD" go
 }
 ```
 

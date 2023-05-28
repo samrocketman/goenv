@@ -1,15 +1,23 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
+SHELL ["/bin/sh", "-exc"]
 WORKDIR /usr/local
-RUN set -ex; \
+RUN \
   apt-get update; \
   apt-get install -y curl vim git make; \
   apt-get clean
-RUN set -ex; \
-  curl -LO https://golang.org/dl/go1.17.linux-amd64.tar.gz; \
-  echo '6bf89fc4f5ad763871cf7eac80a2d594492de7a818303283f1366a7f6a30372d  go1.17.linux-amd64.tar.gz' | sha256sum -c -; \
-  tar -xzf go1.17.linux-amd64.tar.gz; \
-  rm go1.17.linux-amd64.tar.gz
+
+COPY download-utilities.yml /usr/local/
+RUN \
+  curl -sSfLo /usr/local/bin/download-utilities.sh \
+    https://raw.githubusercontent.com/samrocketman/yml-install-files/v2.5/download-utilities.sh; \
+  chmod 755 /usr/local/bin/download-utilities.sh; \
+  download-utilities.sh
+#RUN \
+#  curl -sSfLO https://go.dev/dl/go1.20.4.linux-amd64.tar.gz; \
+#  echo '698ef3243972a51ddb4028e4a1ac63dc6d60821bf18e59a807e051fee0a385bd  go1.20.4.linux-amd64.tar.gz' | sha256sum -c -; \
+#  tar -xzf go1.20.4.linux-amd64.tar.gz; \
+#  rm go1.20.4.linux-amd64.tar.gz
 
 RUN adduser sam
 WORKDIR /home/sam

@@ -1,0 +1,14 @@
+utility:
+  go:
+    dest: /usr/local
+    only: '[ ! -d "${dest}/go" ]'
+    os:
+      Linux: linux
+      Darwin: darwin
+    arch:
+      x86_64: amd64
+      aarch64: arm64
+    download: https://go.dev/dl/go${version}.${os}-${arch}.tar.gz
+    extract: tar -xzC ${dest}/ --no-same-owner
+    update: |
+      git ls-remote -t https://github.com/golang/go.git | grep -F refs/tags/go | sed 's/.*refs\/tags\/go//' | sort -Vr | head -n1

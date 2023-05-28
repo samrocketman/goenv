@@ -1,8 +1,6 @@
 # Go Dev Environment
 
-A simple go development environment for my Ubuntu and Pop OS Linux machine.
-Because my computers run Ubuntu 18.04 or similar LTS derivatives I am basing my
-development environment on that.
+A simple go development environment for my Desktop Linux machines.
 
 > **WARNING:** this environment gets set up with my personal dotfiles including
 > git author settings.
@@ -12,6 +10,8 @@ development environment on that.
 To build the initial docker image run the following command.
 
     docker build -t go .
+
+Will pull in the latest available version of Go.
 
 # Installation
 

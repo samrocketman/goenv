@@ -9,9 +9,9 @@ RUN \
 
 COPY download-utilities.yml /usr/local/
 RUN \
-  curl -sSfLo /usr/local/bin/download-utilities.sh \
-    https://raw.githubusercontent.com/samrocketman/yml-install-files/v2.5/download-utilities.sh; \
-  chmod 755 /usr/local/bin/download-utilities.sh; \
+  curl -sSfL \
+    https://github.com/samrocketman/yml-install-files/releases/download/v2.5/universal.tgz | \
+    tar -xzC /usr/local/bin/ --no-same-owner download-utilities.sh; \
   download-utilities.sh
 #RUN \
 #  curl -sSfLO https://go.dev/dl/go1.20.4.linux-amd64.tar.gz; \

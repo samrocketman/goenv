@@ -32,4 +32,5 @@ RUN \
   git clone https://github.com/samrocketman/home.git; \
   cd home; \
   ./setup.sh
+ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 CMD /bin/bash

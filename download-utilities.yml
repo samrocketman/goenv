@@ -10,5 +10,9 @@ utility:
       aarch64: arm64
     download: https://go.dev/dl/go${version}.${os}-${arch}.tar.gz
     extract: tar -xzC ${dest}/ --no-same-owner
-    update: |
-      git ls-remote -t https://github.com/golang/go.git 'go*' | sed 's/.*refs\/tags\/go//' | sort -Vr | head -n1
+    update: >
+      git ls-remote -t https://github.com/golang/go.git 'go*' |
+      sed 's/.*refs\/tags\/go//' |
+      grep '^[.0-9]\+$' |
+      sort -Vr |
+      head -n1

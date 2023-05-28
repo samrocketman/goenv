@@ -19,7 +19,7 @@ utility:
   dumb-init: &github
     dest: /usr/local/bin
     perm: '755'
-    only: '[ ! -x "${dest}/${utility}" ]'
+    only: '[ ${os} = Linux ] && [ ! -x "${dest}/${utility}" ]'
     download: https://github.com/Yelp/dumb-init/releases/download/v${version}/dumb-init_${version}_${arch}
     update: |
       owner="$(awk -F/ '{print $4"/"$5}' <<< "${download}")"
@@ -28,6 +28,7 @@ utility:
       awk '$1 ~ /[Ll]ocation:/ { gsub(".*/[^0-9.]*", "", $0); print;exit}'
   yq:
     <<: *github
+    only: '[ ! -x "${dest}/${utility}" ]'
     os:
       Linux: linux
       Darwin: darwin

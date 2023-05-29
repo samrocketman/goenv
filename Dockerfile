@@ -25,7 +25,7 @@ RUN \
 RUN adduser sam
 WORKDIR /home/sam
 USER sam
-ENV PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/usr/local/go/bin:/usr/local/tinygo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RUN \
   mkdir -p git/github; \
   cd git; \

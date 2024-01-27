@@ -10,9 +10,9 @@ RUN \
 COPY go.yml /usr/local/
 RUN \
   curl -sSfL \
-    https://github.com/samrocketman/yml-install-files/releases/download/v2.6/universal.tgz | \
+    https://github.com/samrocketman/yml-install-files/releases/download/v2.16/universal.tgz | \
     tar -xzC /usr/local/bin/ --no-same-owner download-utilities.sh; \
-  echo 'e3debea405114fd7f853cc0a02f4603603e8034d1a1316825eedb902e2aa9635  /usr/local/bin/download-utilities.sh' | \
+  echo 'db37a86921257a9a70b6e60e1d2774b97dc248842737ad99dabae9131adf4a68  /usr/local/bin/download-utilities.sh' | \
     sha256sum -c -; \
   download-utilities.sh go.yml
 
@@ -25,7 +25,7 @@ RUN \
 RUN adduser sam
 WORKDIR /home/sam
 USER sam
-ENV PATH=/usr/local/go/bin:/usr/local/tinygo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/usr/local/go/bin:/usr/local/tinygo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin USER=sam HOME=/home/sam
 RUN \
   mkdir -p git/github; \
   cd git; \

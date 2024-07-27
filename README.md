@@ -34,6 +34,9 @@ function goenv() {
     "state")
         goenv_state
         ;;
+    "attach")
+        goenv_attach
+        ;;
     *)
         docker run -it --rm --name goenv -v "$PWD":"$PWD" -w "$PWD" go
         ;;
@@ -73,6 +76,15 @@ function goenv_restart() {
         echo "goenv is not running.."
     fi
 }
+
+function goenv_attach () {
+    container_id=$(docker ps -aqf 'name=goenv')
+    if [ -n "$container_id" ]; then
+        docker exec -it goenv /bin/bash
+    else
+        echo "goenv is not running.."
+    fi
+}
 ```
 
 # Usage
@@ -96,6 +108,11 @@ run the following commands in your terminal:
     goenv state
     ```
 
+- Attach to goenv
+    ```shell
+    goenv attach
+    ```
+
 - To stop goenv
     ```shell
     goenv stop
@@ -106,4 +123,3 @@ run the following commands in your terminal:
     goenv restart
     ```
 
-TODO: add goenv attach

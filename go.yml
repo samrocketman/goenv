@@ -38,3 +38,8 @@ utility:
       grep '^[.0-9]\+$' |
       sort -Vr |
       head -n1
+  upx:
+    <<: *github-goarch
+    only: '[ "${os}" = linux ]'
+    download: 'https://github.com/upx/upx/releases/download/v${version}/upx-${version}-${arch}_${os}.tar.xz'
+    extract: 'tar -xJC "${dest}"/ --no-same-owner --strip-components=1 "upx-${version}-${arch}_${os}/${utility}"'

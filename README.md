@@ -15,17 +15,43 @@ Will pull in the latest available version of Go.
 
 # Installation
 
-Add to `.bashrc` file the following function.
+Add to `.bashrc` file the following 
 
 ```bash
-# go environment provided by my goenv project
-function goenv() {
-    docker run -it --rm -v "$PWD":"$PWD" -w "$PWD" go
-}
+source /path/to/your/goenv/repo/goenv_commands.sh
 ```
 
 # Usage
 
-Start this from the root of a Git repository containing a Go project.
+run the following commands in your terminal:
 
+- To start goenv
+    ```shell
     goenv
+    ```
+
+- To pause goenv
+    ```shell
+    goenv pause
+    ```
+
+- To see goenv's state
+    ```shell
+    goenv state
+    ```
+
+- Attach to goenv
+    ```shell
+    goenv attach
+    ```
+
+- To stop goenv
+    ```shell
+    goenv stop
+    ```
+
+- To restart goenv
+    ```shell
+    goenv restart
+    ```
+

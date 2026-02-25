@@ -1,18 +1,19 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 SHELL ["/bin/sh", "-exc"]
 WORKDIR /usr/local
 RUN \
   apt-get update; \
-  apt-get install -y curl vim git make; \
+  apt-get install -y curl vim git make xz-utils; \
   apt-get clean
 
 COPY go.yml /usr/local/
+ENV YQ_OPTIONS=--yaml-fix-merge-anchor-to-spec
 RUN \
   curl -sSfL \
-    https://github.com/samrocketman/yml-install-files/releases/download/v2.16/universal.tgz | \
+    https://github.com/samrocketman/yml-install-files/releases/download/v3.8/universal.tgz | \
     tar -xzC /usr/local/bin/ --no-same-owner download-utilities.sh; \
-  echo 'db37a86921257a9a70b6e60e1d2774b97dc248842737ad99dabae9131adf4a68  /usr/local/bin/download-utilities.sh' | \
+  echo '61daa8e38f68f45c1bb8b7eaecd383e6afa6172f2543af24352358e2f1ffeea2  /usr/local/bin/download-utilities.sh' | \
     sha256sum -c -; \
   download-utilities.sh go.yml
 
@@ -22,7 +23,9 @@ RUN \
 #  tar -xzf go1.20.4.linux-amd64.tar.gz; \
 #  rm go1.20.4.linux-amd64.tar.gz
 
-RUN adduser sam
+RUN \
+  userdel ubuntu; \
+  adduser sam
 WORKDIR /home/sam
 USER sam
 ENV PATH=/usr/local/go/bin:/usr/local/tinygo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin USER=sam HOME=/home/sam
